@@ -1,0 +1,17 @@
+#sixWordstories
+//Use this code on http://www.sixwordstories.net/ to get a log of all the 6 word stories on one page.
+var sixAuthors = [];
+var story;
+artoo.scrape('.post', {
+    text: function() {
+         story = $(this).find('h2').text();
+        if (story != '') {
+            var data = {
+                'story': story,    
+            };
+            sixAuthors.push(data);
+        }
+    }
+}, function() {
+    artoo.savePrettyJson(sixAuthors);
+});
