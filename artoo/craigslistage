@@ -1,0 +1,27 @@
+#Craigslist 
+//Use this code on craigslist.com under the personal section to get the average age of the posters on a particular page
+<pre>
+var  craigslistPost = [];
+var age,post;
+var sum=0;
+var quantity=0;
+var average;
+artoo.scrape('.l2', {
+    text: function() {
+       age = $(this).find('.age').text();
+        if (age != '') {
+            post = age;
+            craigslistPost.push(post);    
+        quantity++;
+        sum+= Number($(this).find('.age').text());
+        }
+    }
+}, function() {
+    artoo.savePrettyJson(craigslistPost);
+    var average=sum/quantity;
+    console.log('Average:'+average);
+    
+}); 
+
+
+</pre>
