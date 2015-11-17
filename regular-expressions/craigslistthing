@@ -1,0 +1,14 @@
+from bs4 import BeautifulSoup
+import urllib.request
+import re    
+
+url = 'http://amsterdam.craigslist.org/search/m4m'
+
+page = urllib.request.urlopen(url)
+soup = BeautifulSoup(page.read())
+postings = soup('p')                    
+
+for post in postings:                     
+    print (post('a')[1].contents[0])
+    content= post('a')[1].contents[0]
+    print(re.findall('fun',content))
